@@ -1,7 +1,7 @@
 from core.http_client import HttpClient
 
 
-def test_api_is_alive():
+def test_users_endpoint():
     client = HttpClient()
 
     response = client.get("/users")
