@@ -5,7 +5,7 @@ A professional, production-ready automated testing framework for the [DummyJSON 
 ## Live Report
 **View the latest test execution results here:** [Allure Report on GitHub Pages](https://github.io)
 
-## 🛠 Tech Stack
+## Tech Stack
 * **Python 3.11+**
 * **Pytest** — Powerful testing engine.
 * **HTTPX** — Modern, fast HTTP client for Python.
