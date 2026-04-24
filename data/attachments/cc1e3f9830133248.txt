@@ -1,4 +1,0 @@
-INFO     AuthClient:http_client.py:19 
-POST /auth/login
-INFO     httpx:_client.py:1025 HTTP Request: POST https://dummyjson.com/auth/login "HTTP/1.1 200 OK"
-INFO     AuthClient:http_client.py:23 STATUS: 200
