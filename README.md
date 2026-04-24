@@ -1,5 +1,64 @@
 # API Automation Testing Framework (DummyJSON)
 
+A professional, production-ready automated testing framework for the [DummyJSON API](https://dummyjson.com). This project demonstrates scalable architecture, robust data validation, and seamless CI/CD integration.
+
+## Live Report
+**View the latest test execution results here:** [Allure Report on GitHub Pages](https://github.io)
+
+## 🛠 Tech Stack
+* **Python 3.11+**
+* **Pytest** — Powerful testing engine.
+* **HTTPX** — Modern, fast HTTP client for Python.
+* **Pydantic V2** — Strict data validation and settings management.
+* **Allure Reports** — Rich, interactive test reporting with steps and attachments.
+* **Docker & Docker Compose** — Containerization for consistent test environments.
+* **GitHub Actions** — Full CI/CD pipeline for automated testing and report deployment.
+
+## Framework Architecture
+The project follows a **Layered Architecture** pattern to ensure maintainability:
+* `core/` — The "engine": Base HTTP client with built-in logging, request/response attaching for Allure, and error handling.
+* `clients/` — API clients defining low-level endpoint interactions.
+* `services/` — Business logic layer: manages sessions, tokens, and complex test scenarios.
+* `schemas/` — Pydantic models for automatic JSON schema validation.
+* `utils/` — Reusable helpers: custom validators, retry decorators, and logging utilities.
+* `tests/` — Test suites organized by functional modules (Auth, Products, etc.).
+
+## Key Features
+* **Resilience**: Implemented a **Retry mechanism** to handle unstable API endpoints (flaky tests).
+* **Deep Validation**: Beyond status codes—validates data integrity, field types, and response latency.
+* **Session Optimization**: Leverages `session-scoped` fixtures to minimize redundant authentication calls.
+* **Observability**: Detailed Allure reports featuring execution steps and full HTTP request/response logs.
+
+## Getting Started
+
+### 1. Local Execution (Python)
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate | Mac/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+pytest --alluredir=allure-results
+allure serve allure-results
+```
+
+### 2. Docker Execution (Isolated Environment)
+```bash
+docker-compose build
+docker-compose up
+```
+*Test results are automatically synchronized with the local `allure-results` folder.*
+
+## ⚙CI/CD Pipeline
+The project includes a GitHub Actions workflow (`tests.yml`) that automatically:
+1. Provisions the environment and installs dependencies.
+2. Executes the full test suite.
+3. Generates and deploys the up-to-date Allure report to the `gh-pages` branch.
+
+## Test Coverage
+* **Auth**: Positive/Negative login scenarios, Current User profile validation.
+* **Products**: Full CRUD cycle (Create, Read, Update, Delete), Parameterized search functionality.
+---
+# API Automation Testing Framework (DummyJSON)
+
 Профессиональный фреймворк для автоматизации тестирования [DummyJSON API](https://dummyjson.com). Проект демонстрирует навыки построения масштабируемой архитектуры, контейнеризации и настройки CI/CD циклов.
 
 ## Live Report
