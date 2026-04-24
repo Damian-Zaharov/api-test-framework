@@ -2,12 +2,14 @@ from clients.auth_client import AuthClient
 from config.config import config
 from schemas.user_schema import UserLoginResponse, UserMeResponse
 from utils.retry import retry
+import allure
 
 
 class AuthService:
     def __init__(self):
         self.client = AuthClient()
 
+    @allure.step("Авторизация под дефолтным пользователем")
     @retry()
     def login_with_default_user(self):
         """Бизнес-логика: авторизация с данными из config.py"""
@@ -26,6 +28,7 @@ class AuthService:
         user = self.login_with_default_user()
         return user.accessToken
 
+    @allure.step("Получение данных пользователя")
     @retry()
     def get_current_user_info(self, token: str) -> UserMeResponse:
         """Метод для получения данных пользователя"""
@@ -33,6 +36,7 @@ class AuthService:
         response.raise_for_status()
         return UserMeResponse(**response.json())
 
+    @allure.step("Авторизация с неправильными данными")
     def login_with_invalid_data(self, username, password):
         """Метод для попытки входа с неверными данными"""
         return self.client.login(username=username, password=password)

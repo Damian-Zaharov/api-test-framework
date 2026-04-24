@@ -1,6 +1,7 @@
 import httpx
 from core.logger import get_logger
 from config.config import config
+import allure
 
 
 class HttpClient:
@@ -22,6 +23,11 @@ class HttpClient:
         try:
             response = self.client.request(method, url, **kwargs)
             self.logger.info(f"STATUS: {response.status_code}")
+            allure.attach(
+                body=f"URL: {response.url}\nStatus: {response.status_code}\nResponse: {response.text}",
+                name="API Response",
+                attachment_type=allure.attachment_type.TEXT
+            )
             return response
         except Exception as e:
             self.logger.error(f"Request failed: {e}")
