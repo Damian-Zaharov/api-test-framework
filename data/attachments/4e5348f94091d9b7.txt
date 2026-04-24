@@ -1,0 +1,3 @@
+URL: https://dummyjson.com/auth/login
+Status: 400
+Response: {"message":"Invalid credentials"}
