@@ -6,10 +6,8 @@ import allure
 
 class HttpClient:
     def __init__(self):
-        # Инициализируем логгер с именем класса
         self.logger = get_logger(self.__class__.__name__)
 
-        # Создаем сессию httpx
         self.client = httpx.Client(
             base_url=config.BASE_URL,
             timeout=config.TIMEOUT,

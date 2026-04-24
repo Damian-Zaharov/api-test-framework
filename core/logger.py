@@ -7,7 +7,6 @@ def get_logger(name):
     if not logger.hasHandlers():
         logger.setLevel(logging.INFO)
 
-        # Формат: Время | Уровень | Имя компонента | Сообщение
         formatter = logging.Formatter(
             '%(asctime)s | %(levelname)s | %(name)s | %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S'

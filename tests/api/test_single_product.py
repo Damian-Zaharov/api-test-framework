@@ -1,4 +1,3 @@
-
 def test_get_single_product(products_service):
     target_id = 7
     product = products_service.get_single_product(target_id)

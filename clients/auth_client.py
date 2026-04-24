@@ -1,5 +1,6 @@
 from core.http_client import HttpClient
 
+
 class AuthClient(HttpClient):
     def login(self, username, password):
         return self.post(

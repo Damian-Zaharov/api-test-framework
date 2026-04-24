@@ -3,6 +3,7 @@ from schemas.product_schema import ProductListResponse, Product
 from utils.retry import retry
 import allure
 
+
 class ProductsService:
     def __init__(self):
         self.client = ProductsClient()
@@ -51,4 +52,4 @@ class ProductsService:
     def remove_product(self, product_id: int):
         response = self.client.delete_product(product_id)
         response.raise_for_status()
-        return response.json()  # Возвращаем словарь, чтобы проверить флаг isDeleted
+        return response.json()

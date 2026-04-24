@@ -17,9 +17,8 @@ class AuthService:
             username=config.USER_NAME,
             password=config.USER_PASSWORD
         )
-        response.raise_for_status()  # Убедимся, что запрос прошел успешно
+        response.raise_for_status()
 
-        # Валидируем JSON через Pydantic
         return UserLoginResponse(**response.json())
 
     @retry()
@@ -40,4 +39,3 @@ class AuthService:
     def login_with_invalid_data(self, username, password):
         """Метод для попытки входа с неверными данными"""
         return self.client.login(username=username, password=password)
-
