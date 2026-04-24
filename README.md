@@ -47,7 +47,7 @@ docker-compose up
 ```
 *Test results are automatically synchronized with the local `allure-results` folder.*
 
-## ⚙CI/CD Pipeline
+## CI/CD Pipeline
 The project includes a GitHub Actions workflow (`tests.yml`) that automatically:
 1. Provisions the environment and installs dependencies.
 2. Executes the full test suite.
