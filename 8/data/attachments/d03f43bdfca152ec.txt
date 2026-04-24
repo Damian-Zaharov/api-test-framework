@@ -1,0 +1,3 @@
+URL: https://dummyjson.com/products/search?q=111phone
+Status: 200
+Response: {"products":[],"total":0,"skip":0,"limit":0}

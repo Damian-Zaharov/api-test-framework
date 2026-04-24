@@ -1,0 +1,4 @@
+INFO     ProductsClient:http_client.py:19 
+PUT /products/1
+INFO     httpx:_client.py:1025 HTTP Request: PUT https://dummyjson.com/products/1 "HTTP/1.1 200 OK"
+INFO     ProductsClient:http_client.py:23 STATUS: 200

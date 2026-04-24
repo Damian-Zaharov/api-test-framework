@@ -1,0 +1,2 @@
+
+[SUCCESS] Сервер корректно отклонил вход: Invalid credentials
