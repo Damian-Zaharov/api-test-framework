@@ -1,12 +1,14 @@
 from clients.auth_client import AuthClient
 from config.config import config
 from schemas.user_schema import UserLoginResponse, UserMeResponse
+from utils.retry import retry
 
 
 class AuthService:
     def __init__(self):
         self.client = AuthClient()
 
+    @retry()
     def login_with_default_user(self):
         """Бизнес-логика: авторизация с данными из config.py"""
         response = self.client.login(
@@ -18,11 +20,13 @@ class AuthService:
         # Валидируем JSON через Pydantic
         return UserLoginResponse(**response.json())
 
+    @retry()
     def get_auth_token(self):
         """Метод для получения токена"""
         user = self.login_with_default_user()
         return user.accessToken
 
+    @retry()
     def get_current_user_info(self, token: str) -> UserMeResponse:
         """Метод для получения данных пользователя"""
         response = self.client.get_me(token)
