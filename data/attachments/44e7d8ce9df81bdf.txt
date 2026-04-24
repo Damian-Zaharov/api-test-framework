@@ -1,0 +1,3 @@
+URL: https://dummyjson.com/products/add
+Status: 201
+Response: {"id":195,"title":"BMW Pencil","price":999.99,"description":"Very expensive pencil","category":"stationery"}
