@@ -1,4 +1,0 @@
-INFO     ProductsClient:http_client.py:19 
-GET /products/search
-INFO     httpx:_client.py:1025 HTTP Request: GET https://dummyjson.com/products/search?q=Mascara "HTTP/1.1 200 OK"
-INFO     ProductsClient:http_client.py:23 STATUS: 200

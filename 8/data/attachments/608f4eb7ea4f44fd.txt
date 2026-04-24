@@ -1,4 +1,0 @@
-INFO     ProductsClient:http_client.py:19 
-POST /products/add
-INFO     httpx:_client.py:1025 HTTP Request: POST https://dummyjson.com/products/add "HTTP/1.1 201 Created"
-INFO     ProductsClient:http_client.py:23 STATUS: 201
