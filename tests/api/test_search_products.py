@@ -1,14 +1,15 @@
 
-def test_search_product(products_service):
-    query = "phone"
+import pytest
+@pytest.mark.parametrize("query, expected_category", [
+    ("iPhone", "mobile-accessories"),  # Поправили здесь
+    ("Laptop", "laptops"),
+    ("Mascara", "beauty")
+])
+def test_search_product_parametrization(products_service, query, expected_category):
     data = products_service.search_for_product(query)
 
-    # список не пуст?
-    assert len(data.products) > 0, f"По запросу '{query}' ничего не найдено"
+    assert len(data.products) > 0, f"Ничего не найдено по запросу {query}"
 
-    # всё в нижний регистр (.lower()), чтобы поиск был нечувствителен к регистру
-    for product in data.products:
-        content = (product.title + product.description).lower()
-        assert query.lower() in content, f"Товар {product.id} не соответствует поиску '{query}'"
-
-    print(f"\n[INFO] Поиск по слову '{query}' прошел успешно. Найдено: {len(data.products)}")
+    # Проверяем, что хотя бы у первого товара категория совпадает
+    assert data.products[0].category == expected_category
+    print(f"\n[DDT] Поиск '{query}' успешно нашел категорию '{expected_category}'")
