@@ -1,10 +1,8 @@
-name: API Tests
+name: Run Tests
 
 on:
   push:
-    branches: [ main, feature/* ]
-  pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 permissions:
   contents: write
@@ -12,43 +10,41 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
+      - name: Run tests in Docker Compose
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          docker compose up --build --abort-on-container-exit
 
-      - name: Run Tests
-        run: pytest --alluredir=allure-results || true
+      - name: Load test actions history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
       - name: Build Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
           allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
           allure_history: allure-history
-          keep_reports: 20
 
-      - name: Deploy Allure Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy Allure report to Github Pages
         if: always()
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report
+          publish_dir: allure-history
           publish_branch: gh-pages
 
-      - name: Upload Allure Report Artifact
-        uses: actions/upload-artifact@v4
+      - name: Post link to report
         if: always()
-        with:
-          name: final-allure-report
-          path: allure-report
+        run: |
+          echo "### Allure Report 📊" >> $GITHUB_STEP_SUMMARY
+          echo "Отчет доступен здесь: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
