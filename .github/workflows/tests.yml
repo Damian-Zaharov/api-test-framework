@@ -1,26 +1,52 @@
-- name: Run Tests
-  run: pytest --alluredir=allure-results || true
+name: API Tests
 
-- name: Load Allure history
-  uses: actions/checkout@v4
-  if: always()
-  with:
-    ref: gh-pages
-    path: gh-pages
+on:
+  push:
+    branches: [ main, feature/* ]
+  pull_request:
+    branches: [ main ]
 
-- name: Build Allure Report
-  uses: simple-elf/allure-report-action@master
-  if: always()
-  with:
-    allure_results: allure-results
-    allure_history: allure-history
-    keep_reports: 20
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-- name: Upload Allure Report
-  uses: actions/upload-artifact@v4
-  if: always()
-  with:
-    name: final-allure-report
-    path: allure-report
-    retention-days: 7
-# update 1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Tests
+        run: pytest --alluredir=allure-results || true
+
+      - name: Load Allure history
+        uses: actions/checkout@v4
+        if: always()
+        with:
+          ref: gh-pages
+          path: gh-pages
+          continue-on-error: true # Если ветки gh-pages еще нет, не падать
+
+      - name: Build Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-allure-report
+          path: allure-report
+          retention-days: 7
