@@ -1,5 +1,5 @@
 # API Automation Testing Framework (DummyJSON)
-![API Tests](https://github.com/Damian-Zaharov/api-test-framework.github/actions/workflows/tests.yml/badge.svg)
+
 A professional, production-ready automated testing framework for the [DummyJSON API](https://dummyjson.com). This project demonstrates scalable architecture, robust data validation, and seamless CI/CD integration.
 
 ## Live Report
