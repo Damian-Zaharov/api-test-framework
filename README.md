@@ -7,7 +7,12 @@
 ![Allure](https://img.shields.io/badge/Allure-Report-FF6C37?logo=allure&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/CI/CD-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
+
+
 ---
+
+[![Tests](https://github.com/damian-zaharov/ui-saucedemo-playwright-test-framework/actions/workflows/run_tests.yml/badge.svg)](https://damian-zaharov.github.io/api-test-framework/)
+
 A professional, production-ready automated testing framework for the [DummyJSON API](https://dummyjson.com). This project demonstrates scalable architecture, robust data validation, and seamless CI/CD integration.
 
 ## Live Report
