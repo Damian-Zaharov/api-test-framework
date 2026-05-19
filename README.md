@@ -58,5 +58,6 @@ docker-compose up
 ![Dashboard](screenshots/main_report.png)
 *Общий статус прохождения тестов*
 
+
 ![Test Details](screenshots/test_details.png)
 *Детализация шагов и логирование запросов*
